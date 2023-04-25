@@ -1,4 +1,4 @@
-# cloud-init-template-generator
+# cloud-init-template-generator
 
 This template should help get you started developing with Vue 3 in Vite.
 
