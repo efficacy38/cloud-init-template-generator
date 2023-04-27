@@ -1,16 +1,18 @@
 # cloud-init-template-generator
 
-This template should help get you started developing with Vue 3 in Vite.
+This is the project that wants to imporve the cloud-init user experiences usage's project.
 
-## Recommended IDE Setup
+## Features
+- [ ] wright ordering of cloud-config's setting
+- [ ] cloud-config's user section
+- [ ] cloud-config's apt section
+- [ ] cloud-config's run-cmd section
+- [ ] cloud-config's write-file section
+- [ ] cloud-config's network setting
+- [ ] multi-part cloud-config
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
 
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
+## Development
 
 ```sh
 npm install
