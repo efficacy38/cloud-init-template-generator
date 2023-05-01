@@ -15,13 +15,13 @@ export default {
 
 <template>
   <aside class="bd-aside sticky-xl-top text-muted align-self-start mb-3 mb-xl-5 px-2">
-    <h2 class="h6 pt-4 pb-3 mb-4 border-bottom">On this page</h2>
+    <h2 class="h6 pt-4 pb-3 mb-4 border-bottom">every Function Execute in Order</h2>
     <nav class="small" id="toc">
       <ul class="list-unstyled" v-for="(sub_types, type) in supported_setion">
         <li class="my-2">
-          <button class="btn d-inline-flex align-items-center collapsed" data-bs-toggle="collapse" aria-expanded="false"
+          <button class="btn d-inline-flex align-items-center" data-bs-toggle="collapse" aria-expanded="true"
             :data-bs-target="'#' + type" :aria-controls="type">{{ type }}</button>
-          <ul class="list-unstyled ps-3 collapse" :id="type">
+          <ul class="list-unstyled ps-3 show" :id="type">
             <li v-for="sub_type in sub_types">
               <a class="d-inline-flex align-items-center rounded" :href="'#' + sub_type">{{ sub_type }}</a>
             </li>

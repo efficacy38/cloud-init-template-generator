@@ -1,13 +1,66 @@
 const configs = {
-  "cloud-config": [
-    "user",
-    "apt",
-    "run-cmd",
-    "write-file",
-    "network",
-  ], "examples": [
-    "add-user",
-    "macvlan",
-  ]
+ "cloud-config-Init-Local-Stage": [
+  // "migrator", // not shown at doc
+  // "seed_random", // not shown at doc
+  // "bootcmd",
+  "write-files",
+  // "growpart",
+  // "resizefs",
+  // "disk_setup",
+  // "mounts",
+  // "set_hostname",
+  "update_hostname",
+  "update_etc_hosts",
+  // "ca-certs",
+  // "rsyslog",
+  "users-groups",
+  // "ssh",
+ ],
+ "cloud-config-Config-Stage": [
+  "wireguard",
+  "snap",
+  // "ubuntu_autoinstall",
+  "ssh-import-id",
+  "keyboard",
+  "locale",
+  "set-passwords",
+  // "grub-dpkg",
+  // "apt-pipelining",
+  "apt-configure",
+  // "ubuntu-advantage",
+  "ntp",
+  "timezone",
+  // "disable-ec2-metadata",
+  "runcmd",
+  // "byobu",
+ ],
+
+ "cloud-config-final-Stage": [
+  "package-update-upgrade-install",
+  // "fan",
+  // "landscape",
+  // "lxd",
+  // "ubuntu-drivers",
+  // "write-files-deferred",
+  // "puppet",
+  // "chef",
+  // "ansible",
+  // "mcollective",
+  // "salt-minion",
+  // "reset_rmc",
+  // "refresh_rmc_and_interface",
+  // "rightscale_userdata",
+  // "scripts-vendor",
+  "scripts-per-once",
+  "scripts-per-boot",
+  "scripts-per-instance",
+  "scripts-user",
+  // "ssh-authkey-fingerprints",
+  // "keys-to-console", // not at doc
+  // "install-hotplug",
+  // "phone-home",
+  // "final-message",
+  // "power-state-change",
+ ]
 }
 export default configs;
