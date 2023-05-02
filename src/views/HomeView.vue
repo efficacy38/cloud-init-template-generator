@@ -1,10 +1,4 @@
-<script setup>
-import SideNav from "../components/SideNav.vue"
-import CloudConfigSection from "../components/CloudConfigSection.vue";
-</script>
-
 <template>
-  <!-- following use grid to handle the layout -->
   <div class="row align-items-stretch h-100 vw-100">
     <div class="col-10 bg-white">
 
@@ -25,7 +19,7 @@ import CloudConfigSection from "../components/CloudConfigSection.vue";
         </div>
         <div class="col-9">
           <div class="m-2 p-2 card shadow left-side">
-            <CloudConfigSection />
+            <CloudConfigSection @toggle-display="toggleDisplay" :display-type="displayType" />
           </div>
         </div>
 
@@ -39,3 +33,28 @@ import CloudConfigSection from "../components/CloudConfigSection.vue";
     </div>
   </div>
 </template>
+
+<script setup>
+import SideNav from "../components/SideNav.vue"
+import CloudConfigSection from "../components/CloudConfigSection.vue";
+import { DisplayEnum } from "../enums.js";
+</script>
+
+<script>
+export default {
+  data() {
+    return {
+      displayType: DisplayEnum.GRAPHICAL,
+      editType: 0
+    }
+  },
+  methods: {
+    toggleDisplay() {
+      if (this.displayType === DisplayEnum.GRAPHICAL)
+        this.displayType = DisplayEnum.YAML;
+      else
+        this.displayType = DisplayEnum.GRAPHICAL;
+    }
+  }
+}
+</script>
