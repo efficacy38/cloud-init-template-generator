@@ -4,50 +4,49 @@
     <button class="btn btn-primary m-2" @click="$emit('toggleDisplay')">Edit as {{ displayType === DisplayEnum.GRAPHICAL ?
       "YAML" : "Graphical" }}</button>
     <div>
-      {{ writefile }}
+      {{ cloudConfig.writefiles }}
     </div>
   </div>
 
   <div v-if="displayType === DisplayEnum.YAML">
-    <YamlEditor />
+    <YamlEditor :cloud-config=cloudConfig />
   </div>
 
   <div v-if="displayType === DisplayEnum.GRAPHICAL">
     <!-- write file section  -->
-    <div class="row">
-      <h3 id="write-files">write-files</h3>
-      <div class="col col-md-6">
-        <div class="mb-3">
-          <label class="form-label">owner/group</label>
-          <input type="text" class="form-control" placeholder="ubuntu/wheel" v-model="writefile.owner">
+    <h3 id="write-files">writefiles</h3>
+    <Writefiles v-for="(item, idx) in cloudConfig['writefiles']" attr-name='writefiles' :edit-idx="idx"
+      :cloud-config="cloudConfig" />
 
-          <label class="form-label">path</label>
-          <input type="text" class="form-control" placeholder="/etc/samba/smb.conf" v-model="writefile.path">
-
-          <label class="form-label">permission</label>
-          <input type="text" class="form-control" placeholder="0600" v-model="writefile.permission">
-        </div>
-      </div>
-      <div class="col col-md-6">
-        <label class="form-label">Content</label>
-        <textarea class="form-control" placeholder="#!/bin/bash" v-model="writefile.content"></textarea>
-      </div>
-    </div>
-
+    <button class="btn btn-primary mt-2 w-100" @click="addConfig('writefiles')"> add writefiles </button>
   </div>
 </template>
 
 <script setup>
 import { DisplayEnum } from "../enums.js";
+import Writefiles from "./cloudConfigComponment/WritefilesSection.vue"
 import YamlEditor from "../components/YamlEditor.vue";
+import cloudConfigTemplate from './configTemplate.js';
 </script>
 
 <script>
 export default {
   props: ['displayType'],
+  methods: {
+    addConfig(attr) {
+      this.cloudConfig[attr].push({ ...cloudConfigTemplate[attr] });
+      this.editIdx[attr]++;
+    }
+  },
   data() {
     return {
-      writefile: {}
+      editIdx: {
+        writefiles: 0
+      },
+      cloudConfig: {
+        writefiles: [cloudConfigTemplate['writefiles']]
+      },
+
     }
   }
 }

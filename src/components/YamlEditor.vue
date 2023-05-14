@@ -3,30 +3,29 @@
     <div class="line-numbers">
       <span v-for="index in lineCounts" :key="index"></span>
     </div>
-    <textarea v-model="contents" @keydown.tab.prevent="handleTab"></textarea>
+    <textarea v-model="data" disabled="true"></textarea>
   </div>
 </template>
 
 <script setup>
+import yaml from "js-yaml";
 </script>
 <script>
 export default {
+  props: ['cloudConfig'],
   data() {
     return {
       contents: "",
     }
   },
   methods: {
-    handleTab(event) {
-      const start = event.target.selectionStart;
-      const end = event.target.selectionEnd;
-      console.log(start, end, this.contents.substring(0, start) + '\t' + this.contents.substring(end));
-      this.contents = this.contents.substring(0, start) + '\t' + this.contents.substring(end)
-    }
   },
   computed: {
+    data() {
+      return yaml.dump(this.cloudConfig)
+    },
     lineCounts() {
-      return this.contents.split('\n').length;
+      return this.data.split('\n').length;
     }
   }
 }
